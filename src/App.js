@@ -7,15 +7,25 @@ class App extends Component {
     super(props);
     this.state = {
       text: "",
-    }
+    };
+
+    this.handleChange = this.handleChange.bind(this);
   }
+
+  handleChange(event){
+    console.log(event.target.value);
+    this.setState({text: event.target.value});
+  }
+
   render() {
     return (
       <div className="well clearfix">
         <h1>Tweet Box Example</h1>
-        <textarea className="form-control"></textarea><br/>
+        <textarea className="form-control"
+          onChange={this.handleChange}
+          ></textarea><br/>
         <button className="btn btn-primary pull-right"
-          disabled
+          disabled={this.state.text.length === 0}
           >Tweet</button>
       </div>
     );
