@@ -12,6 +12,7 @@ class App extends Component {
 
     this.handleChange = this.handleChange.bind(this);
     this.togglePhoto = this.togglePhoto.bind(this);
+    this.overFlowAlertBox = this.overFlowAlertBox.bind(this);
   }
 
   handleChange(event){
@@ -21,6 +22,16 @@ class App extends Component {
 
   togglePhoto(event){
     this.setState({addedPhoto: !this.state.addedPhoto});
+  }
+
+  overFlowAlertBox(){
+    if(this.reaminingChars() < 0){
+      return(
+        <div className="alert alert-warning">
+          <stron>Oops Too Long!!</stron>
+        </div>
+      );
+    }
   }
 
   reaminingChars(){
@@ -34,12 +45,13 @@ class App extends Component {
   render() {
     return (
       <div className="well clearfix">
+        {this.overFlowAlertBox()}
         <h1>Tweet Box Example</h1>
         <textarea className="form-control"
           onChange={this.handleChange}
           ></textarea><br/>
         <button className="btn btn-primary pull-right"
-          disabled={this.state.text.length === 0}
+          disabled={this.reaminingChars() === 140}
           >Tweet</button>
         <button className="js-add-photo-button btn btn-default pull-right"
           onClick={this.togglePhoto}
