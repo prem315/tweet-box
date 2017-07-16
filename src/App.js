@@ -20,7 +20,15 @@ class App extends Component {
   }
 
   togglePhoto(event){
-    this.setState({addedPhoto: !this.state.addedPhoto});  
+    this.setState({addedPhoto: !this.state.addedPhoto});
+  }
+
+  reaminingChars(){
+    if(this.state.addedPhoto){
+      return 140 - 23 - this.state.text.length;
+    }else{
+      return 140 - this.state.text.length;
+    }
   }
 
   render() {
@@ -36,7 +44,7 @@ class App extends Component {
         <button className="js-add-photo-button btn btn-default pull-right"
           onClick={this.togglePhoto}
           >{this.state.addedPhoto ? "Photo Added" : "Add Photo"}</button>
-        <span>{140 - this.state.text.length}</span>
+        <span>{this.reaminingChars()}</span>
       </div>
     );
   }
