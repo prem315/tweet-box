@@ -26,9 +26,18 @@ class App extends Component {
 
   overFlowAlertBox(){
     if(this.reaminingChars() < 0){
+      if (this.state.photoAdded) {
+        var beforeOverflowText = this.state.text.substring(140 - 23 - 10, 140 - 23);
+        var overflowText = this.state.text.substring(140 - 23);
+      } else {
+        var beforeOverflowText = this.state.text.substring(140 - 10, 140);
+        var overflowText = this.state.text.substring(140);
+      }
       return(
         <div className="alert alert-warning">
-          <stron>Oops Too Long!!</stron>
+          <strong>Oops! Too Long:</strong>
+            &nbsp;...{beforeOverflowText}
+          <strong className="bg-danger">{overflowText}</strong>
         </div>
       );
     }
