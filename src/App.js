@@ -7,14 +7,20 @@ class App extends Component {
     super(props);
     this.state = {
       text: "",
+      addedPhoto: false
     };
 
     this.handleChange = this.handleChange.bind(this);
+    this.togglePhoto = this.togglePhoto.bind(this);
   }
 
   handleChange(event){
     console.log(event.target.value);
     this.setState({text: event.target.value});
+  }
+
+  togglePhoto(event){
+    this.setState({addedPhoto: !this.state.addedPhoto});  
   }
 
   render() {
@@ -27,6 +33,9 @@ class App extends Component {
         <button className="btn btn-primary pull-right"
           disabled={this.state.text.length === 0}
           >Tweet</button>
+        <button className="js-add-photo-button btn btn-default pull-right"
+          onClick={this.togglePhoto}
+          >{this.state.addedPhoto ? "Photo Added" : "Add Photo"}</button>
         <span>{140 - this.state.text.length}</span>
       </div>
     );
