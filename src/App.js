@@ -27,6 +27,7 @@ class App extends Component {
         <button className="btn btn-primary pull-right"
           disabled={this.state.text.length === 0}
           >Tweet</button>
+        <span>{140 - this.state.text.length}</span>
       </div>
     );
   }
